@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = doc.title;
         window.history.pushState(null, '', url);
         updateActiveNav();
+        // Scroll to top after loading new content
+        window.scrollTo(0, 0);
       }
     })
     .catch(error => {
@@ -46,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (link && link.href && link.origin === window.location.origin) {
+      // Exclude logout link from AJAX navigation to force full reload
+      if (link.getAttribute('href') === '/auth/logout') {
+        return; // Allow default behavior (full reload)
+      }
       e.preventDefault();
       loadPage(link.href);
     }

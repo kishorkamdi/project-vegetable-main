@@ -123,7 +123,7 @@
 
   <section class="featured-products">
     <h2 class="mb-4 text-center">Featured Products</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+    <div class="row row-cols- 1 row-cols-md-3 g-4 justify-content-center">
       <% products.slice(0, 9).forEach(product => { %>
         <div class="col">
         <div class="card product-card h-100">
@@ -157,7 +157,7 @@
     setTimeout(function() {
       loadingOverlay.style.display = 'none';
       mainContent.style.display = 'block';
-    }, 2000); // 2 seconds delay
+    }, 1000); // 2 seconds delay
   });
 </script>
 

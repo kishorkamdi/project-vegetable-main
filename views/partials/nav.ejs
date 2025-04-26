@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white " aria-label="Main navigation">
+<nav class="navbar navbar-expand-lg fixed-top navbar-white bg-white " aria-label="Main navigation">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="/" aria-label="Veggie Shop Home">
-            <img src="/images/logo-png.png" alt="Veggie Shop Logo" style="height: 40px; width: auto; margin-right: 8px;">
+            <img src="/images/logo-png.png" alt="Veggie Shop Logo" style="height: 45px; width: auto; margin-right: 8px;">
             
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +18,8 @@
             </ul>
 
             <!-- Search Bar -->
-            <form class="d-flex me-3" action="/products" method="GET" role="search" aria-label="Search products">
-                <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search" name="search" value="<%= typeof searchTerm !== 'undefined' ? searchTerm : '' %>">
+            <form class="d-flex mt-1" action="/products" method="GET" role="search" aria-label="Search products">
+                <input class="form-control me-1" type="search" placeholder="Search Products" aria-label="Search" name="search" value="<%= typeof searchTerm !== 'undefined' ? searchTerm : '' %>">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 

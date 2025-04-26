@@ -2,6 +2,9 @@
 
 <div class="product-container">
 
+  <!-- Message container for add to cart feedback -->
+  <div id="add-to-cart-message" class="alert" style="display:none; position: fixed; top: 70px; right: 20px; z-index: 1050; min-width: 250px;"></div>
+
 <h1 class="text-center mb-4"><%= pageTitle %></h1>
 
 <% if (searchTerm) { %>
@@ -18,7 +21,7 @@
                         <h5 class="card-title"><%= product.name %></h5>
                         <p class="card-text flex-grow-1"><%= product.description %></p>
                         <p class="card-text"><strong>Price <%= product.price.toFixed(2) %></strong></p>
-                        <form action="/cart/add" method="POST" class="mt-auto">
+                        <form action="/cart/add" method="POST" class="mt-auto add-to-cart-form">
                             <input type="hidden" name="productId" value="<%= product.id %>">
                             <div class="input-group input-group-sm mb-2">
                                 <span class="input-group-text">Qty</span>
@@ -39,5 +42,74 @@
     <% } %>
 </div>
 </div>
+
+<script>
+  // Restore scroll position on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollPos = sessionStorage.getItem('productPageScrollPos');
+    if (scrollPos) {
+      window.scrollTo(0, parseInt(scrollPos));
+      sessionStorage.removeItem('productPageScrollPos');
+    }
+
+    // Intercept add to cart form submissions to prevent page reload
+    document.querySelectorAll('.add-to-cart-form').forEach(form => {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        // Save scroll position
+        sessionStorage.setItem('productPageScrollPos', window.scrollY);
+
+        const formData = new FormData(form);
+        try {
+          const formParams = new URLSearchParams();
+          for (const pair of formData) {
+            formParams.append(pair[0], pair[1]);
+          }
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formParams.toString(),
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            credentials: 'same-origin'
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            // Show success message dynamically
+            const messageDiv = document.getElementById('add-to-cart-message');
+            messageDiv.textContent = result.message;
+            messageDiv.className = 'alert alert-success';
+            messageDiv.style.display = 'block';
+            setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+
+            // Update cart item count badge in nav
+            const cartBadge = document.querySelector('.nav-link.position-relative .badge');
+            if (cartBadge) {
+              cartBadge.textContent = result.cartItemCount;
+              if (result.cartItemCount > 0) {
+                cartBadge.style.display = 'inline-block';
+              } else {
+                cartBadge.style.display = 'none';
+              }
+            }
+          } else {
+            const messageDiv = document.getElementById('add-to-cart-message');
+            messageDiv.textContent = 'Error: ' + (result.message || 'Failed to add to cart.');
+            messageDiv.className = 'alert alert-danger';
+            messageDiv.style.display = 'block';
+            setTimeout(() => { messageDiv.style.display = 'none'; }, 3000);
+          }
+        } catch (error) {
+          alert('Error: Could not add to cart. Please try again.');
+          console.error('Add to cart error:', error);
+        }
+      });
+    });
+  });
+</script>
 
 <%- include('partials/footer') %>

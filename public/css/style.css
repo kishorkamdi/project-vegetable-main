@@ -6,8 +6,8 @@
     --text-color: #2c5e2e;
     --link-color: #388e3c;
     --link-hover-color: #2c5e2e;
-    --navbar-bg: #ffffff;
-    --navbar-border: #388e3c;
+    --navbar-bg: #2c5e2e; /* Changed to dark green */
+    --navbar-border: #1b4d2b; /* Darker green border */
     --btn-primary-bg: #388e3c;
     --btn-primary-border: #2c5e2e;
     --btn-primary-bg-hover: #2e7d32;
@@ -75,8 +75,10 @@
 
 /* Add padding-top to body to offset fixed navbar height */
 body {
-    padding-top: 45px;
+    padding-top: 55px;
     scroll-behavior: smooth;
+    background-color: black;
+    color: white;
 }
 
 /* Auth page container and form styling for perfect form display */
@@ -196,6 +198,7 @@ body {
     transition: background-color 0.3s ease, border-color 0.3s ease;
     position: relative;
     left: 120px;
+    
 
 }
 
@@ -218,9 +221,29 @@ body {
 /* Navbar Styles */
 .navbar {
     background-color: var(--navbar-bg);
-
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+/* Center nav content */
+.navbar .container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reduce nav link padding and font size */
+.navbar-nav .nav-link {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Reduce logo image size */
+.navbar-brand img {
+    height: 50px !important;
+    width: auto !important;
 }
 
 /* Smooth scrolling for the whole website */
@@ -268,7 +291,7 @@ html {
   border-radius: 50%;
   width: 90px;
   height: 90px;
-  animation: spin 5s linear infinite;
+  animation: spin 0.6s linear infinite;
 }
 
 /* Spinner animation */

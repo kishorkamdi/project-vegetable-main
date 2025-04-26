@@ -49,12 +49,18 @@ router.post('/add', isLoggedIn, (req, res) => {
     const numQuantity = parseInt(quantity, 10) || 1; // Default to 1 if invalid or missing
 
     if (!productId || numQuantity <= 0) {
+        if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            return res.status(400).json({ success: false, message: 'Invalid product or quantity.' });
+        }
         req.flash('error_msg', 'Invalid product or quantity.');
         return res.redirect(req.headers.referer || '/products'); // Redirect back
     }
 
     const product = getProductById(productId);
     if (!product) {
+        if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            return res.status(404).json({ success: false, message: 'Product not found.' });
+        }
         req.flash('error_msg', 'Product not found.');
         return res.redirect(req.headers.referer || '/products');
     }
@@ -76,6 +82,13 @@ router.post('/add', isLoggedIn, (req, res) => {
 
     console.log(`User ${userId} added ${numQuantity} of ${productId} (${product.name}) to cart.`);
     // console.log('Current Carts:', JSON.stringify(global.appData.carts)); // Log cart state
+
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        // Calculate total cart item count for user
+        const cartItems = global.appData.carts[userId] || [];
+        const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+        return res.json({ success: true, message: `${numQuantity} x ${product.name} added to cart!`, cartItemCount });
+    }
 
     req.flash('success_msg', `${numQuantity} x ${product.name} added to cart!`);
     res.redirect(req.headers.referer || '/products'); // Redirect back to the page they were on

@@ -4,9 +4,9 @@
 <h1><%= pageTitle %></h1>
 
 <% if (cartItems && cartItems.length > 0) { %>
-    <div class="mb-4">
+    <div class="mb-4 inline-block">
         <% cartItems.forEach(item => { %>
-            <div class="cart-item">
+            <div class="cart-item m-2">
                 <img  src="<%= item.image || '/images/placeholder.png' %>" alt="<%= item.name %>">
                 <div class="cart-item-details">
                     <h5><%= item.name %></h5>
@@ -37,7 +37,7 @@
         <% }); %>
     </div>
 
-    <div class="row justify-content-end">
+    <div class="row justify-content-end mt-5">
         <div class="col-md-4 text-end">
              <div class="card p-3">
                  <h3 class="cart-total mb-3 text-center">Total Price : <%= cartTotal %></h3>
