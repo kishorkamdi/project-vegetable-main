@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-right">
+      <form action="/auth/login" method="POST" class="auth-form needs-validation" novalidate>
+        <h2>Log In</h2>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email or Phone</label>
+          <input type="email" class="form-control" id="email" name="email" required value="<%= typeof email !== 'undefined' ? email : '' %>" autocomplete="email" placeholder="Enter your email or phone">
+          <div class="invalid-feedback">
+            Please enter your email address.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+          <div class="invalid-feedback">
+            Please enter your password.
+          </div>
+        </div>
+        <div class="mb-3 text-end">
+          <a href="/auth/forgot-password" class="form-link">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <p class="mt-3 text-center">Don't have an account? <a href="/auth/signup" class="form-link">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+
+<%- include('../partials/footer') %>
+
+<script>
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+</body>

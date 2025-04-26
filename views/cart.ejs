@@ -1,0 +1,56 @@
+
+<%- include('partials/header') %>
+
+<h1><%= pageTitle %></h1>
+
+<% if (cartItems && cartItems.length > 0) { %>
+    <div class="mb-4">
+        <% cartItems.forEach(item => { %>
+            <div class="cart-item">
+                <img  src="<%= item.image || '/images/placeholder.png' %>" alt="<%= item.name %>">
+                <div class="cart-item-details">
+                    <h5><%= item.name %></h5>
+                    <p>Price: <%= item.price.toFixed(2) %></p>
+                    <p><strong>Subtotal: <%= item.itemTotal %></strong></p>
+                </div>
+                <div class="cart-item-actions">
+                    <!-- Update Form -->
+                    <form action="/cart/update" method="POST" class="d-inline-flex align-items-center me-2">
+                        <input type="hidden" name="productId" value="<%= item.id %>">
+                        <label for="quantity-<%= item.id %>" class="visually-hidden">Quantity for <%= item.name %></label>
+                        <input type="number" id="quantity-<%= item.id %>" name="quantity" value="<%= item.quantity %>" min="0" class="form-control form-control-sm" style="width: 70px;" aria-label="Update quantity">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ms-1" title="Update Quantity">Update</button>
+                    </form>
+                    <!-- Remove Form -->
+                    <form action="/cart/remove" method="POST" class="d-inline">
+                        <input type="hidden" name="productId" value="<%= item.id %>">
+                        <button type="submit" class="btn btn-sm btn-danger" title="Remove <%= item.name %> from cart">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                            <span class="visually-hidden">Remove</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <div class="row justify-content-end">
+        <div class="col-md-4 text-end">
+             <div class="card p-3">
+                 <h3 class="cart-total mb-3 text-center">Total Price : <%= cartTotal %></h3>
+                 <a href="/order/checkout" class="btn btn-lg btn-primary w-100">Proceed to Checkout</a>
+             </div>
+        </div>
+    </div>
+
+<% } else { %>
+    <div class="alert alert-info" role="alert">
+        Your shopping cart is empty.
+    </div>
+    <a href="/products" class="btn btn-primary">Continue Shopping</a>
+<% } %>
+
+<%- include('partials/footer') %>

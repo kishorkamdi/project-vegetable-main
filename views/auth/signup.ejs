@@ -1,0 +1,69 @@
+<%- include('../partials/header') %>
+
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-right">
+      <form action="/auth/signup" method="POST" class="auth-form needs-validation" novalidate>
+        <h2>Sign Up</h2>
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" required value="<%= typeof name !== 'undefined' ? name : '' %>" autocomplete="name" placeholder="Enter your full name">
+          <div class="invalid-feedback">
+            Please enter your full name.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email or Phone</label>
+          <input type="email" class="form-control" id="email" name="email" required value="<%= typeof email !== 'undefined' ? email : '' %>" autocomplete="email" placeholder="Enter your email or phone">
+          <div class="invalid-feedback">
+            Please enter your email address.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password (min 6 characters)</label>
+          <input type="password" class="form-control" id="password" name="password" required minlength="6" autocomplete="new-password" placeholder="Enter your password">
+          <div class="invalid-feedback">
+            Password must be at least 6 characters long.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required minlength="6" autocomplete="new-password" placeholder="Confirm your password">
+          <div class="invalid-feedback">
+            Please confirm your password. Passwords must match.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <p class="mt-3 text-center">Already have an account? <a href="/auth/login" class="form-link">Log In</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+
+<%- include('../partials/footer') %>
+
+<script>
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          const password = form.querySelector('#password');
+          const confirmPassword = form.querySelector('#confirmPassword');
+          if (password && confirmPassword && password.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Passwords do not match");
+          } else if (confirmPassword) {
+            confirmPassword.setCustomValidity("");
+          }
+
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+</body>

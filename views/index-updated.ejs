@@ -1,0 +1,172 @@
+<%- include('partials/header') %>
+
+<section class="landing-hero position-relative text-white d-flex align-items-center" style="background-image: url('/images/hero-vegetables.jpg'); background-size: cover; background-position: center; height: 90vh;">
+  <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(34, 70, 32, 0.75); z-index: 1;"></div>
+  <div class="container position-relative text-center" style="z-index: 2; max-width: 800px;">
+    <h1 class="display-3 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Fresh Organic Vegetables Delivered To Your Doorstep</h1>
+    <p class="lead mb-4 fs-4" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">Discover the best quality vegetables from local farms. Healthy, fresh, and sustainable.</p>
+    <form action="/products" method="GET" class="d-flex justify-content-center gap-3">
+      <input type="text" name="search" class="form-control form-control-lg rounded-pill" placeholder="Search vegetables or enter your location" aria-label="Search vegetables or location" style="max-width: 350px;">
+      <input type="text" name="location" class="form-control form-control-lg rounded-pill" placeholder="Enter your location" aria-label="Location" style="max-width: 250px;">
+      <button type="submit" class="btn btn-success btn-lg rounded-pill px-5">Shop Now</button>
+    </form>
+  </div>
+</section>
+
+<div class="container my-5">
+  <section class="features row text-center mb-5">
+    <div class="col-md-4 mb-4">
+      <img src="/images/fresh-icon.png" alt="Freshness" class="mb-3" style="width: 60px;">
+      <h4>Freshness Guaranteed</h4>
+      <p>Handpicked vegetables delivered fresh every day.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <img src="/images/organic-icon.png" alt="Organic" class="mb-3" style="width: 60px;">
+      <h4>100% Organic</h4>
+      <p>Certified organic produce from trusted local farms.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <img src="/images/delivery-icon.png" alt="Delivery" class="mb-3" style="width: 60px;">
+      <h4>Fast Delivery</h4>
+      <p>Quick and reliable delivery to your doorstep.</p>
+    </div>
+  </section>
+
+  <section class="popular-cuisines mb-5">
+    <h2 class="mb-4 text-center">Popular Cuisines</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="cuisine-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/cuisine-indian.jpg" alt="Indian" class="img-fluid">
+          <div class="cuisine-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+            <h5 class="mb-0">Indian</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cuisine-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/cuisine-italian.jpg" alt="Italian" class="img-fluid">
+          <div class="cuisine-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+            <h5 class="mb-0">Italian</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cuisine-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/cuisine-chinese.jpg" alt="Chinese" class="img-fluid">
+          <div class="cuisine-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+            <h5 class="mb-0">Chinese</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="cuisine-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/cuisine-mexican.jpg" alt="Mexican" class="img-fluid">
+          <div class="cuisine-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+            <h5 class="mb-0">Mexican</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="popular-categories mb-5">
+    <h2 class="mb-4 text-center">Popular Categories</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <a href="/products?category=Root Vegetables">
+          <div class="category-card position-relative rounded overflow-hidden shadow-sm ">
+            <img src="/images/root-vegetables.jpg" alt="Root Vegetables" class="img-fluid">
+            <div class="category-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+              <h5 class="mb-0">Root Vegetables</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="/products?category=Leafy Greens">
+          <div class="category-card position-relative rounded overflow-hidden shadow-sm">
+            <img src="/images/leafy-greens.jpg" alt="Leafy Greens" class="img-fluid">
+            <div class="category-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+              <h5 class="mb-0">Leafy Greens</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="/products?category=Fruiting Vegetables">
+          <div class="category-card position-relative rounded overflow-hidden shadow-sm">
+            <img src="/images/fruits.jpg" alt="Fruiting Vegetables" class="img-fluid">
+            <div class="category-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(34, 70, 32, 0.75);">
+              <h5 class="mb-0">Fruiting Vegetables</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-products mb-5">
+    <h2 class="mb-4 text-center">Featured Products</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+      <% products.slice(0, 9).forEach(product => { %>
+        <div class="col">
+          <div class="card product-card h-100 shadow-sm">
+            <img src="<%= product.image || 'images/placeholder.png' %>" class="card-img-top" alt="<%= product.name %>">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text flex-grow-1"><%= product.description %></p>
+              <p class="card-text text-success fw-bold fs-5">$<%= product.price.toFixed(2) %></p>
+              <form action="/cart/add" method="POST" class="mt-auto">
+                <input type="hidden" name="productId" value="<%= product.id %>">
+                <div class="input-group input-group-sm mb-2">
+                  <span class="input-group-text">Qty</span>
+                  <input type="number" name="quantity" value="1" min="1" class="form-control" style="max-width: 70px;" aria-label="Quantity">
+                </div>
+                <button type="submit" class="btn btn-success w-100 rounded-pill">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <!-- New UI Section Start -->
+  <section class="new-ui-section mb-5">
+    <h2 class="mb-4 text-center">New UI Section</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="new-ui-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/new-ui-1.jpg" alt="New UI 1" class="img-fluid">
+          <div class="new-ui-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(44, 94, 46, 0.7);">
+            <h5 class="mb-0">New UI Card 1</h5>
+            <p>Some description for new UI card 1.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="new-ui-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/new-ui-2.jpg" alt="New UI 2" class="img-fluid">
+          <div class="new-ui-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(44, 94, 46, 0.7);">
+            <h5 class="mb-0">New UI Card 2</h5>
+            <p>Some description for new UI card 2.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="new-ui-card position-relative rounded overflow-hidden shadow-sm">
+          <img src="/images/new-ui-3.jpg" alt="New UI 3" class="img-fluid">
+          <div class="new-ui-overlay position-absolute bottom-0 start-0 w-100 text-white p-3" style="background: rgba(44, 94, 46, 0.7);">
+            <h5 class="mb-0">New UI Card 3</h5>
+            <p>Some description for new UI card 3.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- New UI Section End -->
+
+</div>
+
+<%- include('partials/footer') %>

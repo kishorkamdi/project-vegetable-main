@@ -1,0 +1,58 @@
+
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/css/order-history.css">
+
+<div class="py-5 text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="currentColor" class="bi bi-check-circle-fill text-success mb-3" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+    <h1><%= pageTitle %></h1>
+    <p class="lead">Thank you for your order! Your veggies are on their way.</p>
+</div>
+
+
+<% if (order) { %>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card order-confirmation-card mb-4">
+                <div class="card-header">
+                   <strong>Order ID:</strong> <%= order.orderId %>
+                </div>
+                <div class="card-body">
+                    <p><strong>Order Placed:</strong> <%= new Date(order.timestamp).toLocaleString() %></p>
+                    <p><strong>Delivery To:</strong></p>
+                    <p class="ms-3"><%= order.location.replace(/\n/g, '<br>') %></p> <!-- Display address with line breaks -->
+
+                    <h5 class="mt-4">Items Ordered:</h5>
+                    <ul class="list-group list-group-flush mb-3">
+                        <% order.items.forEach(item => { %>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div class="d-flex align-items-center">
+                                    <% if(item.image) { %>
+                                        <img src="<%= item.image %>" alt="<%= item.name %>" style="width: 150px; height: 150px; object-fit: cover; margin-right: 15px; border-radius: 8px;">
+                                    <% } %>
+                                    <span><%= item.name %> <span class="text-muted">(Qty: <%= item.quantity %>)</span></span>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">Price : <%= (item.price * item.quantity).toFixed(2) %></span>
+                            </li>
+                        <% }); %>
+                    </ul>
+                    <hr>
+                    <h5 class="text-end">Order Total: <span class="text-success">Price : <%= order.total %></span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } else { %>
+    <div class="alert alert-warning text-center" role="alert">
+        Could not retrieve specific order details at this time.
+    </div>
+<% } %>
+
+<div class="text-center mt-4">
+    <a href="/products" class="btn btn-primary">Continue Shopping</a>
+    <!-- <a href="/orders" class="btn btn-outline-secondary">View My Order History</a> -->
+</div>
+
+<%- include('partials/footer') %>
+

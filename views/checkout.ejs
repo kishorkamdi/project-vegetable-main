@@ -1,0 +1,68 @@
+
+<%- include('partials/header') %>
+
+<h1><%= pageTitle %></h1>
+
+<div class="row g-5"> <!-- Added gutter spacing -->
+    <div class="col-md-7 col-lg-8 order-md-last"> <!-- Order summary on right for larger screens -->
+        <h2 class="mb-3">Order Summary</h2>
+        <ul class="list-group mb-3 checkout-summary">
+            <% cartItems.forEach(item => { %>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0"><%= item.name %></h6>
+                        <small class="text-muted">Quantity: <%= item.quantity %></small>
+                    </div>
+                    <span class="text-muted">Price : <%= item.itemTotal %></span>
+                </li>
+            <% }); %>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+                <strong class="text-success">Total (INR) :</strong>
+                <strong class="text-success">Price : <%= cartTotal %></strong>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-5 col-lg-4">
+        <h2 class="mb-3">Delivery Information</h2>
+        <form action="/order/place" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="location" class="form-label">Delivery Location / Address</label>
+                <textarea class="form-control" id="location" name="location" rows="4" required placeholder="Enter your full address, city, postal code, etc."><%= typeof location !== 'undefined' ? location : '' %></textarea>
+                <div class="invalid-feedback">
+                    Please enter your delivery location.
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="alert alert-warning" role="alert">
+              <small><strong>Note:</strong> Payment processing is not implemented in this demonstration.</small>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg w-100">Place Order</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  // (From Bootstrap docs)
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+

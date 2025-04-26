@@ -1,0 +1,158 @@
+/* public/css/landing-cards.css */
+
+/* Override card sizes on landing page */
+
+/* Popular Cuisines cards */
+.popular-cuisines .cuisine-card {
+    max-width: 350px;
+    min-height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark-mode .popular-cuisines .cuisine-card {
+    box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
+.popular-cuisines .cuisine-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+.dark-mode .popular-cuisines .cuisine-card:hover {
+    box-shadow: 0 12px 24px rgba(255,255,255,0.15);
+}
+
+.popular-cuisines .cuisine-card img {
+    flex-grow: 1;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.popular-cuisines .cuisine-overlay {
+    background: rgba(44, 94, 46, 0.7);
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    color: white;
+}
+.dark-mode .popular-cuisines .cuisine-overlay {
+    background: rgba(33, 33, 33, 0.7);
+}
+
+/* Popular Categories cards */
+.popular-categories .category-card {
+    max-width: 400px;
+    min-height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark-mode .popular-categories .category-card {
+    box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
+.popular-categories .category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+.dark-mode .popular-categories .category-card:hover {
+    box-shadow: 0 12px 24px rgba(255,255,255,0.15);
+}
+
+.popular-categories .category-card img {
+    flex-grow: 1;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.popular-categories .category-overlay {
+    background: rgba(44, 94, 46, 0.7);
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    color: white;
+}
+.dark-mode .popular-categories .category-overlay {
+    background: rgba(33, 33, 33, 0.7);
+}
+
+/* Product Cards */
+.product-card {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg);
+    overflow: hidden;
+}
+.dark-mode .product-card {
+    border-color: #444444;
+    background-color: #222222;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px var(--shadow-color);
+}
+.dark-mode .product-card:hover {
+    box-shadow: 0 12px 24px rgba(255,255,255,0.15);
+}
+
+.product-card img.card-img-top {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+.dark-mode .product-card img.card-img-top {
+    border-bottom: 1px solid #444444;
+}
+
+.product-card img.card-img-top:hover {
+    transform: scale(1.05);
+}
+
+.product-card .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--card-title-color);
+}
+.dark-mode .product-card .card-title {
+    color: #bbdefb;
+}
+
+.product-card .card-text {
+    font-size: 1rem;
+    color: var(--card-text-color);
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+.dark-mode .product-card .card-text {
+    color: #cccccc;
+}
+
+.product-card .card-text strong {
+    font-size: 1.3rem;
+    color: var(--card-text-strong-color);
+}
+.dark-mode .product-card .card-text strong {
+    color: #81c784;
+}

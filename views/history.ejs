@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/css/order-history.css">
+
+<div class="order-history-container">
+    <h1><%= pageTitle %></h1>
+
+    <% if (orders && orders.length > 0) { %>
+        <% orders.forEach(order => { %>
+            <div class="order-card">
+                <div class="order-card-header">
+                    Order ID: <%= order.orderId %>
+                </div>
+                <div class="order-card-body">
+                    <p><strong>Order Placed:</strong> <%= new Date(order.timestamp).toLocaleString() %></p>
+                    <p><strong>Delivery To:</strong></p>
+                    <p><%= order.location.replace(/\n/g, '<br>') %></p>
+
+                    <h5>Items Ordered:</h5>
+                    <ul class="order-items-list">
+                        <% order.items.forEach(item => { %>
+                            <li>
+                                <div class="order-item-info">
+                                    <% if(item.image) { %>
+                                        <img src="<%= item.image %>" alt="<%= item.name %>">
+                                    <% } %>
+                                    <span class="order-item-name"><%= item.name %></span>
+                                    <span class="order-item-qty">(Qty: <%= item.quantity %>)</span>
+                                </div>
+                                <span class="order-item-price">Price : <%= (item.price * item.quantity).toFixed(2) %></span>
+                            </li>
+                        <% }); %>
+                    </ul>
+                    <hr>
+                    <div class="order-total">Order Total Price: <%= order.total %></div>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <div class="no-orders-message">
+            You have no past orders.
+        </div>
+    <% } %>
+
+    <div class="text-center mt-4">
+        <a href="/products" class="btn btn-primary">Continue Shopping</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
